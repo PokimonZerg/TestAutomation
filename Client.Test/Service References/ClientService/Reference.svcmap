@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2216b645-4241-4f9f-b28f-5d21d8f7f363" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/hello" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="hello3.xsd" MetadataType="Schema" ID="3628ad7a-5e3e-479c-ad1d-edb984a63770" SourceId="1" SourceUrl="http://localhost:8080/hello?xsd=xsd3" />
+    <MetadataFile FileName="hello1.xsd" MetadataType="Schema" ID="f6aae646-0b99-4fd1-9c83-2ab04f070d5d" SourceId="1" SourceUrl="http://localhost:8080/hello?xsd=xsd1" />
+    <MetadataFile FileName="hello.disco" MetadataType="Disco" ID="5998fe4e-d418-4f75-a64e-4cf92d631c62" SourceId="1" SourceUrl="http://localhost:8080/hello?disco" />
+    <MetadataFile FileName="ClientService.wsdl" MetadataType="Wsdl" ID="ade32c5f-a49f-43aa-856d-3a62af8f2f49" SourceId="1" SourceUrl="http://localhost:8080/hello?wsdl" />
+    <MetadataFile FileName="hello.xsd" MetadataType="Schema" ID="4a68ee6c-92a4-4417-abc3-fa2d4644e76c" SourceId="1" SourceUrl="http://localhost:8080/hello?xsd=xsd2" />
+    <MetadataFile FileName="hello2.xsd" MetadataType="Schema" ID="ae40e34f-5005-4cb9-a50e-03927f9f1b65" SourceId="1" SourceUrl="http://localhost:8080/hello?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

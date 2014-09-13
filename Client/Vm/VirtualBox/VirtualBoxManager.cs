@@ -1,8 +1,10 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestAutomation.Client.Application;
 using VirtualBox;
 
 namespace TestAutomation.Client.Vm.VirtualBox
@@ -71,13 +73,15 @@ namespace TestAutomation.Client.Vm.VirtualBox
 
         public void StartVirtualMachine(VirtualMachine vm)
         {
+            log.InfoFormat("Starting Virtual machine {0}", vm.Name);
+
             VirtualBoxVirtualMachine vboxVm = vm as VirtualBoxVirtualMachine;
 
             Session session = new Session();
 
             IProgress progress = vboxVm.vboxMachine.LaunchVMProcess(session, "gui", null);
 
-            progress.WaitForCompletion(10000);
+            progress.WaitForCompletion(ClientConfiguration.Instance.VirtualMachineStartingTimeout.Value);
 
             if (progress.Completed == 0)
             {
@@ -142,5 +146,7 @@ namespace TestAutomation.Client.Vm.VirtualBox
                 return null;
             }
         }
+
+        private static readonly ILog log = LogManager.GetLogger(typeof(VirtualBoxManager));
     }
 }

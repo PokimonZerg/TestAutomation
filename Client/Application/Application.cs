@@ -1,4 +1,6 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -8,51 +10,40 @@ using System.Threading;
 using System.Threading.Tasks;
 using TestAutomation.Client.Service;
 
-namespace testClient
+namespace TestAutomation.Client.Application
 {
-    class Program
+    public class EntryPoint
     {
         static void Main(string[] args)
         {
             Uri baseAddress = new Uri("http://localhost:8080/hello");
 
+            XmlConfigurator.Configure();
+
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                var exception = (Exception)e.ExceptionObject;
+
+                log.Error("Unhandled exception: ", exception);
+            };
+
             using (ServiceHost host = new ServiceHost(typeof(ClientService), baseAddress))
             {
-                // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
                 host.Description.Behaviors.Add(smb);
 
-                // Open the ServiceHost to start listening for messages. Since
-                // no endpoints are explicitly configured, the runtime will create
-                // one endpoint per base address for each service contract implemented
-                // by the service.
                 host.Open();
 
                 Console.WriteLine("The service is ready at {0}", baseAddress);
                 Console.WriteLine("Press <Enter> to stop the service.");
                 Console.ReadLine();
 
-                // Close the ServiceHost.
                 host.Close();
             }
-
-            /*var vbox = new VirtualBoxManager();
-
-            var m = vbox.GetVirtualMachines()[0];
-
-            Console.WriteLine("Status: " + m.State);
-
-            m.StartAsync().Wait();
-
-            m.StopAsync().Wait();
-
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine("Status: " + m.State);
-                Thread.Sleep(1000);
-            }*/
         }
+
+        private static readonly ILog log = LogManager.GetLogger(typeof(EntryPoint));
     }
 }

@@ -17,16 +17,16 @@ namespace TestAutomation.Client.Application
             } 
         }
 
-        [ConfigurationProperty("VirtualMachineStartingTimeout")]
-        public GenericElement<int> VirtualMachineStartingTimeout
+        [ConfigurationProperty("VirtualMachineOperationTimeout")]
+        public GenericElement<int> VirtualMachineOperationTimeout
         {
             get
             {
-                return (GenericElement<int>)this["VirtualMachineStartingTimeout"];
+                return (GenericElement<int>)this["VirtualMachineOperationTimeout"];
             }
             set
             {
-                this["VirtualMachineStartingTimeout"] = value;
+                this["VirtualMachineOperationTimeout"] = value;
             }
         }
     }

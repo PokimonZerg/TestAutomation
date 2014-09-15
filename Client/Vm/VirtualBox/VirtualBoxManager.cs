@@ -81,12 +81,12 @@ namespace TestAutomation.Client.Vm.VirtualBox
 
             IProgress progress = vboxVm.vboxMachine.LaunchVMProcess(session, "gui", null);
 
-            progress.WaitForCompletion(ClientConfiguration.Instance.VirtualMachineStartingTimeout.Value);
+            progress.WaitForCompletion(ClientConfiguration.Instance.VirtualMachineOperationTimeout.Value);
 
             if (progress.Completed == 0)
             {
                 progress.Cancel();
-                throw new VirtualMachineException("Launching vm failed");
+                throw new VirtualMachineException("Operation [Start Virtual Machine] failed. Timeout - " + ClientConfiguration.Instance.VirtualMachineOperationTimeout.Value + "ms");
             }
 
             vboxVm.vboxSession = session;
@@ -98,12 +98,12 @@ namespace TestAutomation.Client.Vm.VirtualBox
 
             IProgress progress = vboxVm.vboxSession.Console.PowerDown();
 
-            progress.WaitForCompletion(10000);
+            progress.WaitForCompletion(ClientConfiguration.Instance.VirtualMachineOperationTimeout.Value);
 
             if (progress.Completed == 0)
             {
                 progress.Cancel();
-                throw new VirtualMachineException("Stopping vm failed");
+                throw new VirtualMachineException("Operation [Stop Virtual Machine] failed. Timeout - " + ClientConfiguration.Instance.VirtualMachineOperationTimeout.Value + "ms");
             }
 
             vboxVm.vboxSession = null;

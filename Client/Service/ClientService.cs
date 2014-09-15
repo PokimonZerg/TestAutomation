@@ -45,5 +45,12 @@ namespace TestAutomation.Client.Service
 
             vm.Start();
         }
+
+        public void StopVirtualMachine(Guid vmId)
+        {
+            var vm = vmStore.Get(vmId);
+
+            vm.Stop();
+        }
     }
 }
